@@ -1,7 +1,7 @@
 const fetchItem = async (itemID) => {
   if (!itemID) throw new Error('You must provide an url');
   const url = `https://api.mercadolibre.com/items/${itemID}`;
-  return await fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .catch((error) => error);
 };
