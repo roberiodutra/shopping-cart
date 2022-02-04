@@ -26,10 +26,10 @@ const getItems = async () => {
   const items = document.querySelector('.items');
   const data = await fetchProducts('computador');
   data.results.forEach((elem) => {
-    const obj = { sku: elem.id, name: elem.title, image: elem.thumbnail, };
+    const obj = { sku: elem.id, name: elem.title, image: elem.thumbnail };
     items.appendChild(createProductItemElement(obj));
   });
-}
+};
 
 // function getSkuFromProductItem(item) {
 //   return item.querySelector('span.item__sku').innerText;
