@@ -1,4 +1,11 @@
 const cartItems = document.querySelector('.cart__items');
+const totalprice = document.querySelector('.total-price');
+const emptyButton = document.querySelector('.empty-cart');
+
+emptyButton.addEventListener('click', () => {
+  cartItems.innerHTML = '';
+  saveCartItems(cartItems.innerHTML);
+});
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -15,7 +22,7 @@ function createCustomElement(element, className, innerText) {
 }
 
 function cartItemClickListener(e) {
-  cartItems.removeChild(e.target);
+  e.target.remove();
 }
 
 // Mesma função que criei para o projeto todo-list
