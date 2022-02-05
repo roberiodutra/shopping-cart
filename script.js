@@ -1,3 +1,5 @@
+const cartItems = document.querySelector('.cart__items');
+
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -13,22 +15,32 @@ function createCustomElement(element, className, innerText) {
 }
 
 function cartItemClickListener(e) {
-  e.target.remove();
+  cartItems.removeChild(e.target);
+}
+
+// Mesma função que criei para o projeto todo-list
+function onLoad() {
+  const loadItems = getSavedCartItems();
+  const parseItems = JSON.parse(loadItems);
+
+  if (parseItems) {
+    cartItems.innerHTML = parseItems;
+    cartItems.addEventListener('click', cartItemClickListener);
+  }
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
   return li;
 }
 
 const addToCart = async (cartItem) => {
-  const cartItems = document.querySelector('.cart__items');
   const data = await fetchItem(cartItem);
   const obj = { sku: data.id, name: data.title, salePrice: data.price };
   cartItems.appendChild(createCartItemElement(obj));
+  saveCartItems(cartItems.innerHTML);
 };
 
 function createProductItemElement({ sku, name, image }) {
@@ -56,6 +68,7 @@ const addItems = async () => {
 //   return item.querySelector('span.item__sku').innerText;
 // }
 
-addItems();
-
-window.onload = () => { };
+window.onload = () => {
+  onLoad();
+  addItems();
+};
