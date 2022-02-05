@@ -16,6 +16,7 @@ function createCustomElement(element, className, innerText) {
 
 function cartItemClickListener(e) {
   cartItems.removeChild(e.target);
+  
 }
 
 // Mesma função que criei para o projeto todo-list
