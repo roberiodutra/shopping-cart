@@ -66,7 +66,6 @@ function createProductItemElement({ sku, name, image }) {
 }
 
 const addItems = async () => {
-  const items = document.querySelector('.items');
   const data = await fetchProducts('computador');
   loading.remove();
   data.results.forEach((elem) => {
