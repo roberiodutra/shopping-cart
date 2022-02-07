@@ -4,6 +4,12 @@ const cartItems = document.querySelector('.cart__items');
 const emptyButton = document.querySelector('.empty-cart');
 const loading = document.querySelector('.loading');
 
+// Dúvida
+// const loading = document.createElement('p');
+// loading.className = 'loading';
+// loading.innerText = 'carregando...';
+// items.appendChild(loading);
+
 emptyButton.addEventListener('click', () => {
   cartItems.innerHTML = '';
   saveCartItems(cartItems.innerHTML);

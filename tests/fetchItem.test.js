@@ -27,7 +27,7 @@ describe('2 - Teste a função fetchItem', () => {
     try {
       await fetchItem();
     } catch (error) {
-      expect(error).toEqual(new Error('You must provide an url'));
+      expect(error).toEqual('Error: You must provide an url');
     }
   });
 });
