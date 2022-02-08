@@ -1,8 +1,9 @@
 const items = document.querySelector('.items');
 const cartItems = document.querySelector('.cart__items');
-// const totalprice = document.querySelector('.total-price');
+const totalprice = document.querySelector('.total-price');
 const emptyButton = document.querySelector('.empty-cart');
 const loading = document.querySelector('.loading');
+let sum = 0;
 
 // Dúvida
 // const loading = document.createElement('p');
@@ -10,8 +11,19 @@ const loading = document.querySelector('.loading');
 // loading.innerText = 'carregando...';
 // items.appendChild(loading);
 
+const sumPrices = () => {
+  const cartItem = document.querySelectorAll('.cart__item');
+  const allItems = Array.from(cartItem);
+  allItems.filter((item) => {
+     const allPrices = item.innerHTML.substring(item.innerHTML.indexOf('$') + 1);
+     sum += parseFloat(allPrices);
+     totalprice.innerText = sum;
+  });
+};
+
 emptyButton.addEventListener('click', () => {
   cartItems.innerHTML = '';
+  totalprice.innerText = 0;
   saveCartItems(cartItems.innerHTML);
 });
 
@@ -31,6 +43,11 @@ function createCustomElement(element, className, innerText) {
 
 function cartItemClickListener(e) {
   e.target.remove();
+  sum = 0;
+  sumPrices();
+  if (!cartItems.innerHTML) {
+    totalprice.innerText = 0;
+  }
 }
 
 // Mesma função que criei para o projeto todo-list
@@ -56,6 +73,8 @@ const addToCart = async (cartItem) => {
   const data = await fetchItem(cartItem);
   const obj = { sku: data.id, name: data.title, salePrice: data.price };
   cartItems.appendChild(createCartItemElement(obj));
+  sum = 0;
+  sumPrices();
   saveCartItems(cartItems.innerHTML);
 };
 
@@ -80,11 +99,8 @@ const addItems = async () => {
   });
 };
 
-// function getSkuFromProductItem(item) {
-//   return item.querySelector('span.item__sku').innerText;
-// }
-
 window.onload = () => {
   onLoad();
   addItems();
+  sumPrices();
 };
