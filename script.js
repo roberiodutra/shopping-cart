@@ -7,8 +7,7 @@ let sum = 0;
 
 const sumPrices = () => {
   const cartItem = document.querySelectorAll('.cart__item');
-  const allItems = Array.from(cartItem);
-  allItems.forEach((item) => {
+  cartItem.forEach((item) => {
     const allPrices = item.innerHTML.substring(item.innerHTML.indexOf('$') + 1);
     sum += parseFloat(allPrices);
     totalprice.innerText = sum;
