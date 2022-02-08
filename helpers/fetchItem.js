@@ -4,10 +4,10 @@ const fetchItem = async (itemID) => {
     const response = await fetch(url);
     return response.json();
   } catch (error) {
-    //como o retorno do erro é um array, aqui transformo em string, para que no teste, tenha certeza que não é um falso positivo com base no retorno.
+    // como o retorno do erro é um array, aqui transformo em string, para que no teste, tenha certeza que não é um falso positivo com base no retorno.
     throw new Error('You must provide an url').toString();
   }
-// Ou assim \/
+//   Ou assim \/
 //   if (!itemID) {
 //     throw new Error('You must provide an url').toString();
 //   }

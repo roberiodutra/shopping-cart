@@ -5,20 +5,15 @@ const emptyButton = document.querySelector('.empty-cart');
 const loading = document.querySelector('.loading');
 let sum = 0;
 
-// Dúvida
-// const loading = document.createElement('p');
-// loading.className = 'loading';
-// loading.innerText = 'carregando...';
-// items.appendChild(loading);
-
 const sumPrices = () => {
   const cartItem = document.querySelectorAll('.cart__item');
   const allItems = Array.from(cartItem);
-  allItems.filter((item) => {
-     const allPrices = item.innerHTML.substring(item.innerHTML.indexOf('$') + 1);
-     sum += parseFloat(allPrices);
-     totalprice.innerText = sum;
+  allItems.forEach((item) => {
+    const allPrices = item.innerHTML.substring(item.innerHTML.indexOf('$') + 1);
+    sum += parseFloat(allPrices);
+    totalprice.innerText = sum;
   });
+  return cartItem;
 };
 
 emptyButton.addEventListener('click', () => {
