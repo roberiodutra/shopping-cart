@@ -12,7 +12,6 @@ const sumPrices = () => {
     sum += parseFloat(allPrices);
     totalprice.innerText = sum;
   });
-  return cartItem;
 };
 
 emptyButton.addEventListener('click', () => {
